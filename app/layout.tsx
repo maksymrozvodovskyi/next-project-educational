@@ -1,5 +1,5 @@
 import Header from "@/components/Header/Header";
-
+import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,13 +27,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Header />
+        <TanStackProvider>
+          <Header />
 
-        <main>{children}</main>
+          <main>{children}</main>
 
-        <footer>
-          <p>Something in footer</p>
-        </footer>
+          <footer>
+            <p>Something in footer</p>
+          </footer>
+        </TanStackProvider>
       </body>
     </html>
   );
