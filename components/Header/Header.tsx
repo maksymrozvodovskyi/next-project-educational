@@ -1,7 +1,11 @@
-import css from "./Header.module.css";
 import Link from "next/link";
+import css from "./Header.module.css";
+import { getCategories } from "@/lib/api";
+import CategoriesMenu from "../CategoriesMenu/CategoriesMenu";
 
-export default function Header() {
+export default async function Header() {
+  const categories = await getCategories();
+
   return (
     <header className={css.header}>
       <Link href="/" aria-label="Home">
@@ -10,10 +14,7 @@ export default function Header() {
       <nav aria-label="Main Navigation">
         <ul className={css.navigation}>
           <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/notes">Notes</Link>
+            <CategoriesMenu categories={categories} />
           </li>
           <li>
             <Link href="/profile">Profile</Link>
